@@ -36,15 +36,15 @@ public class DrawPile {
         cards.add(new Attack("Barbarian", 'a', ALL_RINGS, 10));
         cards.add(new Tar());
         cards.add(new DriveHimBack());
-//        cards.add(new Missing());
-//        cards.add(new FortifiedWall());
-//        cards.add(new Scavenge());
-//        cards.add(new NiceShot());
+        cards.add(new Missing());
+        cards.add(new FortifiedWall());
+        cards.add(new Scavenge());
+        cards.add(new NiceShot());
         cards.add(new Draw2());
-//        for (int i=0; i < 4; i++) {
-//            cards.add(new Brick());
-//            cards.add(new Mortar());
-//        }
+        for (int i=0; i < 4; i++) {
+            cards.add(new Brick());
+            cards.add(new Mortar());
+        }
 
 
         Collections.shuffle(cards);
@@ -61,6 +61,6 @@ public class DrawPile {
         if (cards.isEmpty()) {
             shuffleDeck();
         }
-        return cards.remove(0);
+        return cards.removeFirst();
     }
 }

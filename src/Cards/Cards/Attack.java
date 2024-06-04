@@ -5,10 +5,15 @@ import Board.Tiles.Monsters.Monster;
 public class Attack extends Card {
 //    private String name;
     private final char color;
-    private final int damage;
+    private int damage;
     private final int[] arcs;
     private final int[] rings;
 //    -1 ring for any
+
+    public void setDamage(int num) {
+//        Used by the Nice Shot card
+        this.damage = num;
+    }
 
     /**
      * Allow the user to select a monster. If it can be targeted by this attack, execute the attack. Otherwise, do nothing

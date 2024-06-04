@@ -12,6 +12,13 @@ public class Hand {
     public int getNumCards() {
         return cards.size();
     }
+    public Card getCard(int index) {
+        return cards.get(index);
+    }
+    public boolean addCard(Card card) {
+        cards.add(card);
+        return true;
+    }
 
     /**
      * Draw card(s) from the top of the face down deck
@@ -19,7 +26,7 @@ public class Hand {
      */
     public void drawCard(int num) {
         for (int i=0; i<num; i++) {
-            cards.add(DrawPile.drawCard());
+            addCard(DrawPile.drawCard());
         }
     }
 
@@ -28,10 +35,6 @@ public class Hand {
         if (numCards < maxHandSize) {
             drawCard(maxHandSize - numCards);
         }
-    }
-
-    public Card getCard(int index) {
-        return cards.get(index);
     }
 
     /**
@@ -46,17 +49,26 @@ public class Hand {
         Card otherCard = otherHand.selectCard();
         discardCard(myCard);
         otherHand.discardCard(otherCard);
-        cards.add(otherCard);
-        otherHand.cards.add(myCard);
+        addCard(otherCard);
+        otherHand.addCard(myCard);
         return true;
     }
 
     public boolean playCard(int index) {
         if (getCard(index).onPlay()) {
-//            Card was successfully played
             discardCard(index);
             return true;
         }
+        System.out.println("Invalid usage of card - Try again");
+        return false;
+    }
+
+    public boolean playCard(Card card) {
+        if (card.onPlay()) {
+            discardCard(card);
+            return true;
+        }
+        System.out.println("Invalid usage of card - Try again");
         return false;
     }
 
@@ -86,15 +98,11 @@ public class Hand {
         DiscardPile.addCard(card);
     }
 
-    private Card selectCard(){
+    public Card selectCard() {
+        System.out.println(this);
         System.out.println("Pick the card by its position");
         return cards.get(Main.scObject.scanInt(getNumCards()));
     }
-
-//    protected Card selectCard(Scanner sc){
-//        System.out.println("Pick the card by its position");
-//        return cards.get(Main.scObject.scanInt(getNumCards()));
-//    }
 
     @Override
     public String toString() {

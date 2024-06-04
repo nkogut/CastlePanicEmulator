@@ -16,6 +16,7 @@ public class Main {
     private static int numPlayers;
     private static int maxTrades;
     public static Player currPlayer;
+    public static boolean missing = false;
     private static String[] playerNames;
     private static Player[] playersArray;
     private static ArrayList<Tile> tileBag = new ArrayList<>(43);
@@ -33,6 +34,14 @@ public class Main {
             }
         }
         return null;
+    }
+
+    public static boolean setMissing(boolean state) {
+        if (missing) return false;
+        else {
+            missing = state;
+            return true;
+        }
     }
 
     /**
@@ -232,7 +241,11 @@ public class Main {
         playCards();
 
         Board.moveAllForward();
-        pullTile(2);
+        if (!missing) pullTile(2);
+        else {
+            setMissing(false);
+            System.out.println("Missing used - draw no monsters this turn");
+        }
     }
 
     /**
