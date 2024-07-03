@@ -91,19 +91,13 @@ public class Hand {
         return cards.get(Main.scObject.scanInt(getNumCards()));
     }
 
-//    protected Card selectCard(Scanner sc){
-//        System.out.println("Pick the card by its position");
-//        return cards.get(Main.scObject.scanInt(getNumCards()));
-//    }
-
     @Override
     public String toString() {
-        String str = "";
+        String str = "----" + Main.currPlayer + "'s hand----";
         for (int i = 0; i < cards.size(); i++) {
             str += System.lineSeparator() + i + " " + cards.get(i);
-
-//            Should use stringbuilder
         }
+        str += "\n------------";
         return str;
     }
 

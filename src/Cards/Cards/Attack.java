@@ -19,7 +19,6 @@ public class Attack extends Card {
 
         Monster monster =  Board.selectMonster();
         if (monster == null) {
-            System.out.println("false - monster null");
             return false;
         }
 
@@ -44,7 +43,6 @@ public class Attack extends Card {
         }
         if (targetableArc && targetableRing) {
             monster.modifyHealth(-damage, true);
-            System.out.println("successfully targeted");
             return true;
         }
         System.out.println("Illegal target, try again");
@@ -64,7 +62,6 @@ public class Attack extends Card {
         this.arcs = Board.colorToArc(color);
         this.rings = rings;
         this.damage = damage;
-
     }
 
     /**
@@ -76,6 +73,5 @@ public class Attack extends Card {
         this.arcs = Board.colorToArc(color);
         this.rings = new int[]{ring};
         this.damage = damage;
-
     }
 }
