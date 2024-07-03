@@ -19,9 +19,6 @@ public class Boulder extends BoardEffect {
             for (int j=0; j<monsters.size(); j++) {
                 monsters.get(j).modifyHealth(-10, false);
             }
-//            for (Monster monster : monsters) {
-//                monster.modifyHealth(-10);
-//            }
         }
 //        The boulder goes through the other side
         arc = (arc + 3) % 6;
@@ -36,5 +33,6 @@ public class Boulder extends BoardEffect {
         }
     }
     public Boulder() {
+        name = "Boulder";
     }
 }

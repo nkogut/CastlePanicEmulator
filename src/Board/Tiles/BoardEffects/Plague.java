@@ -16,10 +16,15 @@ public class Plague extends BoardEffect {
         this.type = type;
         switch (type) {
             case "Archer": ring = 3;
+                name = "Plague: archers";
                 break;
             case "Knight": ring = 2;
+                name = "Plague: knights";
                 break;
-            default: ring = 1;
+            case "Swordsman":
+                ring = 1;
+                name = "Plague: swordsmen";
+                break;
         }
     }
 }

@@ -10,6 +10,7 @@ public class DrawMoreMonsters extends BoardEffect {
 
     public DrawMoreMonsters(int numTiles) {
         this.numTiles = numTiles;
+        name = "Draw " + numTiles + " monsters";
     }
 
 }

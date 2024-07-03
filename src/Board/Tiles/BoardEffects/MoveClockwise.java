@@ -15,5 +15,6 @@ public class MoveClockwise extends BoardEffect {
      */
     public MoveClockwise(int direction) {
         this.direction = direction;
+        name = (direction == 1) ? "All monsters move clockwise" : "All monsters move counterclockwise";
     }
 }

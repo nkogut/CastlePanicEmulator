@@ -14,6 +14,17 @@ public class MoveColor extends BoardEffect {
     }
     public MoveColor(char color) {
         arcs = colorToArc(color);
+        switch (color) {
+            case 'r':
+                name = "All red monsters move forward";
+                break;
+            case 'b':
+                name = "All blue monsters move forward";
+                break;
+            case 'g':
+                name = "All green monsters move forward";
+                break;
+        }
     }
 
 }
