@@ -67,7 +67,7 @@ public class Monster extends Tile {
     /**
      * Move 1 monster forward/back. Will move clockwise if in center
      * @param numRings number of rings to move, negative moves back
-     * @return false if there is a barrier - need to call something that lets choose which monster to damage
+     * @return false if it collides after moving
      */
     public boolean changeRing(int numRings) {
         int movementStep;
@@ -113,19 +113,24 @@ public class Monster extends Tile {
      * Rotate a monster 1 arc
      * @param direction direction to rotate: 1 for clockwise, -1 for counterclockwise
      */
-    public void changeArc(int direction) {
+    public boolean changeArc(int direction) {
         if (isTarred) {
             isTarred = false;
         } else {
             int rotatedArc = Board.rotatedArcPosition(arc, direction);
-            if (Board.getTowersInArc(rotatedArc)) {
-                Board.collide(this, rotatedArc, 0);
+            if (ring == 0 && Board.getTowersInArc(rotatedArc)) {
+//                Board.collide(this, rotatedArc, ring);
+                return true;
+            }
+            else if (ring == 1 && Board.getWallsInArc(rotatedArc)) {
+                return true;
             }
             else {
                 Board.updateMonsterBoardPosition(this, arc, ring, rotatedArc, ring);
                 arc = rotatedArc;
             }
         }
+        return false;
     }
 
 

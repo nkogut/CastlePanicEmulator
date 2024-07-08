@@ -27,6 +27,9 @@ public class Main {
     public static String[] getPlayerNames() {
         return playerNames;
     }
+    public static Player[] getAllPlayers() {
+        return playersArray;
+    }
     public static Player getPlayerByName(String name) {
         for (int i = 0; i < numPlayers; i++) {
             if (playerNames[i].equalsIgnoreCase(name)) {

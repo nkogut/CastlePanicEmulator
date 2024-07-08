@@ -70,9 +70,17 @@ public class Board {
         }
     }
 
-    public static void moveAllRadially(int arc, int direction) {
-//        TODO
-//        Does any boss make this need to apply to 1 arc?
+    public static void moveAllRadially(int direction) {
+        ArrayList<Monster> collidingMonsters = new ArrayList<>();
+        for (Monster monster : monstersOnBoard) {
+            if (!monster.changeArc(direction)) {
+                collidingMonsters.add(monster);
+            }
+        }
+        if (!collidingMonsters.isEmpty()) {
+            Monster chosenMonster = pickMonsterToCollide(collidingMonsters);
+            collide(chosenMonster, chosenMonster.getArc(), collidingMonsters.getFirst().getRing() - 1);
+        }
     }
 
     public static ArrayList<Monster> getMonstersAtPosition(int arc, int ring) {
