@@ -16,4 +16,7 @@ public class AllPlayersDiscard extends BoardEffect {
             }
         }
     }
+    public AllPlayersDiscard() {
+        name = "All players discard";
+    }
 }

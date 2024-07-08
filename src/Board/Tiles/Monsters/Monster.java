@@ -47,8 +47,13 @@ public class Monster extends Tile {
         if (health > maxHealth) {
             health = maxHealth;
         }
-        System.out.println("damage =" + num + "health = " + health);
+
         if (health <= 0) {
+            if (playerKill) {
+                System.out.println("You have killed the " + this.name);
+            } else {
+                System.out.println("The " + this.name + " has been killed");
+            }
             Board.updateMonsterBoardPosition(this, arc, ring, false);
             if (playerKill) {
                 if (String.valueOf(this.getClass()).startsWith("Board.Tiles.Monsters.Boss")) {
@@ -56,6 +61,12 @@ public class Monster extends Tile {
                 } else {
                     Main.currPlayer.addPoints(maxHealth);
                 }
+            }
+        } else {
+            if (playerKill) {
+                System.out.println("You have dealt " + num + " to the " + this.name + ". It has " + health + " remaining");
+            } else {
+                System.out.println("The " + this.name + " has been dealt " + num + " damage. It has " + health + " remaining");
             }
         }
     }

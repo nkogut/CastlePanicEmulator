@@ -7,4 +7,5 @@ import Board.Tiles.Tile;
  */
 public abstract class BoardEffect extends Tile {
     public abstract void onDraw();
+    public String name;
 }

@@ -106,12 +106,11 @@ public class Hand {
 
     @Override
     public String toString() {
-        String str = "";
+        String str = "----" + Main.currPlayer + "'s hand----";
         for (int i = 0; i < cards.size(); i++) {
             str += System.lineSeparator() + i + " " + cards.get(i);
-
-//            Should use stringbuilder
         }
+        str += "\n------------";
         return str;
     }
 

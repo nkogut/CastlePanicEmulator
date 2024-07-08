@@ -106,7 +106,7 @@ public class Main {
                 Board.addNewMonster(monster);
             } else {
                 BoardEffect boardEffect = (BoardEffect) tileBag.remove(0);
-                System.out.println("drew " + boardEffect.getClass().getSimpleName());
+                System.out.println("Drew tile: " + boardEffect.name);
                 boardEffect.onDraw();
             }
         }
@@ -217,17 +217,16 @@ public class Main {
         int response;
         while (true) {
             Board.displayBoard();
-            System.out.println("Hand: " + currPlayer.getHand());
+            System.out.println(currPlayer.getHand());
             System.out.println("Would you like to play a card? -1 to end phase");
             response = scObject.scanInt(currPlayer.getHand().getNumCards());
             if (response == -1) {
                 return;
             } else {
 //                attempt to play the card at the given index
-                System.out.println("trying to play");
                 if (currPlayer.getHand().playCard(response)) {
                     Board.displayBoard();
-                    System.out.println("Hand: " + currPlayer.getHand());
+                    System.out.println(currPlayer.getHand());
                 }
             }
 
@@ -236,8 +235,9 @@ public class Main {
 
     public static void turn() {
         System.out.println(currPlayer + "'s turn");
+        Board.displayBoard();
         currPlayer.getHand().drawToFull();
-        System.out.println("Hand: " + currPlayer.getHand());
+        System.out.println(currPlayer.getHand());
 
         discardToDraw();
         trade();
