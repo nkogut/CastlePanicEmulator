@@ -35,15 +35,15 @@ public class Hand {
     }
 
     /**
-     * Exchange cards with another player, 1 card pair at a time
+     * Exchange cards with another player, 1 card pair at a time (applicable for 2 player games)
      * @return true if the trade is successful, otherwise false
      */
     public boolean trade() {
-//      may need to catch errors here
         System.out.println("With whom?");
         Hand otherHand = Main.getPlayerByName(Main.scObject.scanStr(Main.getPlayerNames())).getHand();
-        Card myCard = selectCard();
-        Card otherCard = otherHand.selectCard();
+
+        Card myCard = selectCard("Which card would you like to trade?");
+        Card otherCard = otherHand.selectCard("For which card?");
         discardCard(myCard);
         otherHand.discardCard(otherCard);
         cards.add(otherCard);
@@ -88,6 +88,11 @@ public class Hand {
 
     private Card selectCard(){
         System.out.println("Pick the card by its position");
+        return cards.get(Main.scObject.scanInt(getNumCards()));
+    }
+
+    private Card selectCard(String message){
+        System.out.println(message);
         return cards.get(Main.scObject.scanInt(getNumCards()));
     }
 
