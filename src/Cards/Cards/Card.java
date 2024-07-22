@@ -1,7 +1,7 @@
 package Cards.Cards;
 
 public abstract class Card {
-    private final String name;
+    public final String name;
 
     public abstract boolean onPlay();
 

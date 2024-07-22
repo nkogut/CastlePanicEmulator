@@ -16,6 +16,25 @@ public class Board {
     public static boolean getWallsInArc(int arc) {
         return walls[arc];
     }
+    public static boolean getReinforcementsInArc(int arc) {
+        return reinforcements[arc];
+    }
+    public static boolean setReinforcements(int arc) {
+        if (!getWallsInArc(arc) || getReinforcementsInArc(arc)) return false;
+        else {
+            reinforcements[arc] = true;
+            return true;
+        }
+    }
+
+    public static boolean setWalls(int arc) {
+        if (!getWallsInArc(arc)) {
+            walls[arc] = true;
+            return true;
+        }
+        return false;
+    }
+
     public static boolean getTowersInArc(int arc) {
         return towers[arc];
     }
@@ -41,7 +60,7 @@ public class Board {
         }
         if (!collidingMonsters.isEmpty()) {
             Monster chosenMonster = pickMonsterToCollide(collidingMonsters);
-            collide(chosenMonster, arc, collidingMonsters.get(0).getRing() - 1);
+            collide(chosenMonster, arc, collidingMonsters.getFirst().getRing() - 1);
         }
     }
 
@@ -51,9 +70,17 @@ public class Board {
         }
     }
 
-    public static void moveAllRadially(int arc, int direction) {
-//        TODO
-//        Does any boss make this need to apply to 1 arc?
+    public static void moveAllRadially(int direction) {
+        ArrayList<Monster> collidingMonsters = new ArrayList<>();
+        for (Monster monster : monstersOnBoard) {
+            if (!monster.changeArc(direction)) {
+                collidingMonsters.add(monster);
+            }
+        }
+        if (!collidingMonsters.isEmpty()) {
+            Monster chosenMonster = pickMonsterToCollide(collidingMonsters);
+            collide(chosenMonster, chosenMonster.getArc(), collidingMonsters.getFirst().getRing() - 1);
+        }
     }
 
     public static ArrayList<Monster> getMonstersAtPosition(int arc, int ring) {
@@ -68,7 +95,7 @@ public class Board {
         int len = arr.size();
         Monster chosenMonster;
         if (len == 1) {
-            chosenMonster = arr.get(0);
+            chosenMonster = arr.getFirst();
         } else {
             System.out.println("pick the index of the monster to take damage");
 //            int index = Integer.parseInt(scanner.nextLine());
@@ -101,10 +128,8 @@ public class Board {
     }
 
     /**
-     * Handle collision of a monster with a wall/tower
-     * @param monster
-     * @param arc
-     * @param ring
+     * Handle collision of a monster once a collision has already been determined to have occurred.
+     * Damage the monster and structure
      */
     public static void collide(Monster monster, int arc, int ring) {
         monster.modifyHealth(-1, false);
@@ -117,9 +142,6 @@ public class Board {
      */
         private static void modifyTowersRemaining(int num) {
             towersRemaining += num;
-//            if (towersRemaining <= 0) {
-//    //            lose
-//        }
     }
 
     /**
@@ -274,7 +296,7 @@ public class Board {
         if (monsters.isEmpty()) {
             return null;
         } else if (monsters.size() == 1) {
-            return monsters.get(0);
+            return monsters.getFirst();
         } else {
             int i = 1;
             System.out.println("Select one of the following by their number:");
@@ -290,9 +312,4 @@ public class Board {
         updateMonsterBoardPosition(monster, monster.getArc(), monster.getRing(), true);
 
     }
-
-//    public static void main(String[] args) {
-//        createMonsterBoard();
-//    }
-
 }
