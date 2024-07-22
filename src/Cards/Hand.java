@@ -44,7 +44,6 @@ public class Hand {
     public boolean trade() {
         System.out.println("With whom?");
         Hand otherHand = Main.getPlayerByName(Main.scObject.scanStr(Main.getPlayerNames())).getHand();
-
         Card myCard = selectCard("Which card would you like to trade?");
         Card otherCard = otherHand.selectCard("For which card?");
         discardCard(myCard);
@@ -105,6 +104,7 @@ public class Hand {
     }
 
     private Card selectCard(String message){
+        System.out.println(this);
         System.out.println(message);
         return cards.get(Main.scObject.scanInt(getNumCards()));
     }
