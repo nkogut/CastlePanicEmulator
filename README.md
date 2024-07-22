@@ -1,7 +1,6 @@
-
 # Castle Panic Emulator
 
-This fully functional digital recreation of the popular board game <em>Castle Panic</em> features all base game enemies, tiles, and cards, with robust rule enforcement. Enjoy the classic 2-4 player strategy game without the need for any physical components.
+This fully functional digital recreation of the popular board game <em>Castle Panic</em> features all base game enemies, tiles, and cards, with robust rule enforcement. Enjoy the classic 1-6 player strategy game without the need for any physical components.
 
 The text-based interface intuitively captures the complex movement of the traditionally 360 degree board without being overwhelming to new players.
 
